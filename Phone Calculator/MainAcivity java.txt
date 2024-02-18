@@ -1,0 +1,225 @@
+package com.example.calculator;
+
+import androidx.appcompat.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+
+public class MainActivity extends AppCompatActivity {
+
+    // Declare variables
+    private TextView resultTextView;
+    private Button clearButton, divideButton, multiplyButton, subtractButton, addButton,
+            pointButton, equalsButton, zeroButton, oneButton, twoButton, threeButton,
+            fourButton, fiveButton, sixButton, sevenButton, eightButton, nineButton;
+
+    private String currentNumber, operator;
+    private double result;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        // Initialize variables
+        resultTextView = findViewById(R.id.resultTextView);
+        clearButton = findViewById(R.id.clearButton);
+        divideButton = findViewById(R.id.buttonDivide);
+        multiplyButton = findViewById(R.id.buttonMultiply);
+        subtractButton = findViewById(R.id.buttonSubtract);
+        addButton = findViewById(R.id.buttonAdd);
+        pointButton = findViewById(R.id.buttonPoint);
+        equalsButton = findViewById(R.id.buttonEquals);
+        zeroButton = findViewById(R.id.button0);
+        oneButton = findViewById(R.id.button1);
+        twoButton = findViewById(R.id.button2);
+        threeButton = findViewById(R.id.button3);
+        fourButton = findViewById(R.id.button4);
+        fiveButton = findViewById(R.id.button5);
+        sixButton = findViewById(R.id.button6);
+        sevenButton = findViewById(R.id.button7);
+        eightButton = findViewById(R.id.button8);
+        nineButton = findViewById(R.id.button9);
+
+        currentNumber = "";
+        operator = "";
+        result = 0.0;
+
+        // Set onClickListeners for all buttons
+        clearButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                clear();
+            }
+        });
+
+        divideButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                operatorClick("/");
+            }
+        });
+
+        multiplyButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                operatorClick("*");
+            }
+        });
+
+        subtractButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                operatorClick("-");
+            }
+        });
+
+        addButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                operatorClick("+");
+            }
+        });
+
+        pointButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (currentNumber.indexOf(".") == -1) {
+                    currentNumber += ".";
+                    updateDisplay();
+                }
+            }
+        });
+
+        equalsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                calculate();
+            }
+        });
+        zeroButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                numberClick("0");
+            }
+        });
+
+        oneButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                numberClick("1");
+            }
+        });
+
+        twoButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                numberClick("2");
+            }
+        });
+
+        threeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                numberClick("3");
+            }
+        });
+
+        fourButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                numberClick("4");
+            }
+        });
+
+        fiveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                numberClick("5");
+            }
+        });
+
+        sixButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                numberClick("6");
+            }
+        });
+
+        sevenButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                numberClick("7");
+            }
+        });
+
+        eightButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                numberClick("8");
+            }
+        });
+
+        nineButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                numberClick("9");
+            }
+        });
+    }
+
+    // Update the display with the current number
+    private void updateDisplay() {
+        resultTextView.setText(currentNumber);
+    }
+
+    // Handle number button clicks
+    private void numberClick(String number) {
+        currentNumber += number;
+        updateDisplay();
+    }
+
+    // Handle operator button clicks
+    private void operatorClick(String op) {
+        if (operator.isEmpty()) {
+            result = Double.parseDouble(currentNumber);
+        } else {
+            calculate();
+        }
+        operator = op;
+        currentNumber = "";
+    }
+
+    // Calculate the result based on the current operator and numbers
+    private void calculate() {
+        if (!currentNumber.isEmpty()) {
+            double num2 = Double.parseDouble(currentNumber);
+            switch (operator) {
+                case "+":
+                    result += num2;
+                    break;
+                case "-":
+                    result -= num2;
+                    break;
+                case "*":
+                    result *= num2;
+                    break;
+                case "/":
+                    result /= num2;
+                    break;
+            }
+        }
+        currentNumber = Double.toString(result);
+        operator = "";
+        updateDisplay();
+    }
+
+    // Clear the current number and result
+    private void clear() {
+        currentNumber = "";
+        operator = "";
+        result = 0.0;
+        updateDisplay();
+    }
+}
