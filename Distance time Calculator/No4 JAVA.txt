@@ -1,0 +1,43 @@
+package com.example.distancecalculator;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+
+public class MainActivity extends AppCompatActivity {
+
+    // Define widgets
+    EditText timeEditText;
+    Button calculateButton;
+    TextView resultTextView;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        // Initialize widgets
+        timeEditText = findViewById(R.id.timeEditText);
+        calculateButton = findViewById(R.id.calculateButton);
+        resultTextView = findViewById(R.id.resultTextView);
+
+        // Set OnClickListener for convertButton
+        calculateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Get time value from EditText
+                int time = Integer.parseInt(timeEditText.getText().toString());
+
+                // Calculate distance traveled
+                double distance = (50.0 * time) / 60.0;
+
+                // Display distance traveled in TextView
+                resultTextView.setText("Distance Traveled: " + distance + " km");
+            }
+        });
+    }
+}

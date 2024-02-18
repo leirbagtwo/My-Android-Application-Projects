@@ -1,0 +1,43 @@
+package com.example.lengthconverter;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+
+public class MainActivity extends AppCompatActivity {
+
+    // Define widgets
+    EditText inchesEditText;
+    Button convertButton;
+    TextView metersTextView;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        // Initialize widgets
+        inchesEditText = findViewById(R.id.inchesEditText);
+        convertButton = findViewById(R.id.convertButton);
+        metersTextView = findViewById(R.id.metersTextView);
+
+        // Set OnClickListener for convertButton
+        convertButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Get inches value from EditText
+                double inches = Double.parseDouble(inchesEditText.getText().toString());
+
+                // Convert inches to meters
+                double meters = (inches * 2.54) / 100.0;
+
+                // Display meters value in TextView
+                metersTextView.setText(meters + " m");
+            }
+        });
+    }
+}

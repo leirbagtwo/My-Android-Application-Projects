@@ -1,0 +1,43 @@
+package com.example.temperatureconverter;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+
+public class MainActivity extends AppCompatActivity {
+
+    // Define widgets
+    EditText celsiusEditText;
+    Button convertButton;
+    TextView fahrenheitTextView;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        // Initialize widgets
+        celsiusEditText = findViewById(R.id.celsiusEditText);
+        convertButton = findViewById(R.id.convertButton);
+        fahrenheitTextView = findViewById(R.id.fahrenheitTextView);
+
+        // Set OnClickListener for convertButton
+        convertButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Get Celsius value from EditText
+                double celsius = Double.parseDouble(celsiusEditText.getText().toString());
+
+                // Convert Celsius to Fahrenheit
+                double fahrenheit = (celsius * 1.8) + 32;
+
+                // Display Fahrenheit value in TextView
+                fahrenheitTextView.setText(fahrenheit + "°F");
+            }
+        });
+    }
+}

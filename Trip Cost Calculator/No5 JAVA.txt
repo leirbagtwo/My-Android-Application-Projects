@@ -1,0 +1,46 @@
+package com.example.taxicalculator;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+
+public class MainActivity extends AppCompatActivity {
+
+    // Define widgets
+    EditText distanceEditText;
+    Button calculateButton;
+    TextView resultTextView;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        // Initialize widgets
+        distanceEditText = findViewById(R.id.distanceEditText);
+        calculateButton = findViewById(R.id.calculateButton);
+        resultTextView = findViewById(R.id.resultTextView);
+
+        // Set OnClickListener for convertButton
+        calculateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Get distance value from EditText
+                double distance = Double.parseDouble(distanceEditText.getText().toString());
+
+                // Convert distance to meters
+                double meters = distance * 1000;
+
+                // Calculate cost of taxi trip
+                double cost = (meters / 250.0) * 1.25;
+
+                // Display cost of taxi trip in TextView
+                resultTextView.setText("Cost of Trip: P" + cost);
+            }
+        });
+    }
+}

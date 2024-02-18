@@ -1,0 +1,44 @@
+package com.example.tuitioncalculator;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+
+public class MainActivity extends AppCompatActivity {
+
+    // Define widgets
+    EditText unitsEditText;
+    Button calculateButton;
+    TextView resultTextView;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        // Initialize widgets
+        unitsEditText = findViewById(R.id.unitsEditText);
+        calculateButton = findViewById(R.id.calculateButton);
+        resultTextView = findViewById(R.id.resultTextView);
+
+        // Set OnClickListener for convertButton
+        calculateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Get units value from EditText
+                int units = Integer.parseInt(unitsEditText.getText().toString());
+
+                // Calculate tuition fee
+                int tuitionFee = (units * 1450) + 1500;
+                tuitionFee += (int) (tuitionFee * 0.15);
+
+                // Display tuition fee in TextView
+                resultTextView.setText("Tuition Fee: " + tuitionFee);
+            }
+        });
+    }
+}

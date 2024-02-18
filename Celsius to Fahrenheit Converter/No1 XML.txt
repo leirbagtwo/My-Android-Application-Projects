@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+   xmlns:tools="http://schemas.android.com/tools"
+   android:orientation="vertical"
+   android:layout_width="match_parent"
+   android:layout_height="match_parent"
+   android:padding="16dp"
+   tools:context=".MainActivity">
+
+   <!-- Celsius EditText -->
+   <EditText
+       android:id="@+id/celsiusEditText"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:hint="Enter Celsius temperature"/>
+
+   <!-- Convert Button -->
+   <Button
+       android:id="@+id/convertButton"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:text="Convert"/>
+
+   <!-- Fahrenheit TextView -->
+   <TextView
+       android:id="@+id/fahrenheitTextView"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:textSize="24sp"/>
+
+</LinearLayout>
