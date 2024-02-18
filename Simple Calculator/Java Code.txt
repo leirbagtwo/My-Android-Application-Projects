@@ -1,0 +1,47 @@
+package com.example.supplementalactivity;
+
+import android.annotation.SuppressLint;
+import android.os.Bundle;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+public class MainActivity extends AppCompatActivity {
+
+    private EditText score1;
+    private EditText score2;
+    private EditText score3;
+    private EditText score4;
+    private EditText score5;
+    private TextView result;
+
+
+    @SuppressLint("SetTextI18n")
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        score1 = (EditText)findViewById(R.id.editText_score1);
+        score2 = (EditText)findViewById(R.id.editText_score2);
+        score3 = (EditText)findViewById(R.id.editText_score3);
+        score4 = (EditText)findViewById(R.id.editText_score4);
+        score5 = (EditText)findViewById(R.id.editText_score5);
+        Button average = (Button) findViewById(R.id.Btn_Ave);
+        result = (TextView)findViewById(R.id.Textview_Result);
+
+        average.setOnClickListener(view -> {
+            int sc1 = Integer.parseInt(score1.getText().toString());
+            int sc2 = Integer.parseInt(score2.getText().toString());
+            int sc3 = Integer.parseInt(score3.getText().toString());
+            int sc4 = Integer.parseInt(score4.getText().toString());
+            int sc5 = Integer.parseInt(score5.getText().toString());
+
+            int ave = (sc1 + sc2 + sc3 + sc4 + sc5) / 5;
+            result.setText("Result: " + ave);
+        });
+
+    }
+}
